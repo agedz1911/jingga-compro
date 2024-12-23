@@ -48,7 +48,8 @@ class AboutUsResource extends Resource
                 Hidden::make('updated_by')
                     ->default($user ? $user->name : ''),
                 Toggle::make('is_active')
-                    ->inline(),
+                    ->inline()
+                    ->default(true),
 
             ]);
     }

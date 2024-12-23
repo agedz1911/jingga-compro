@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\HomeSliderResource\Pages;
+namespace App\Filament\Resources\CustomerResource\Pages;
 
-use App\Filament\Resources\HomeSliderResource;
+use App\Filament\Resources\CustomerResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Auth;
 
-class EditHomeSlider extends EditRecord
+class EditCustomer extends EditRecord
 {
-    protected static string $resource = HomeSliderResource::class;
+    protected static string $resource = CustomerResource::class;
 
     protected function afterSave(): void
     {

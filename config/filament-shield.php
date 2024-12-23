@@ -61,7 +61,7 @@ return [
     'generator' => [
         'option' => 'policies_and_permissions',
         'policy_directory' => 'Policies',
-        // 'policy_namespace' => 'Policies',
+        'policy_namespace' => 'Policies',
     ],
 
     'exclude' => [

@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\HomeSliderResource\Pages;
-use App\Filament\Resources\HomeSliderResource\RelationManagers;
-use App\Models\HomeSlider;
+use App\Filament\Resources\CustomerResource\Pages;
+use App\Filament\Resources\CustomerResource\RelationManagers;
+use App\Models\Customer;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -21,11 +20,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class HomeSliderResource extends Resource
+class CustomerResource extends Resource
 {
-    protected static ?string $model = HomeSlider::class;
+    protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-photo';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
     public static function form(Form $form): Form
     {
@@ -33,20 +32,17 @@ class HomeSliderResource extends Resource
 
         return $form
             ->schema([
+                TextInput::make('company'),
                 FileUpload::make('image')
-                    ->directory('homeslider')
+                    ->directory('customer')
                     ->image()
                     ->helperText('image size: 1920x1080')
                     ->required(),
-                TextInput::make('title'),
-                TextInput::make('caption'),
-                Textarea::make('description'),
-                TextInput::make('tage')
-                    ->label('tag'),
                 Hidden::make('created_by')
                     ->default($user ? $user->name : ''),
                 Hidden::make('updated_by')
                     ->default($user ? $user->name : ''),
+                TextInput::make('url'),
                 Toggle::make('is_active')
                     ->inline()
                     ->default(true),
@@ -58,17 +54,13 @@ class HomeSliderResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Home Slider')
-                    ->square(),
-                TextColumn::make('title')
-                    ->limit(30),
-                TextColumn::make('description')
-                    ->limit(50),
-                TextColumn::make('tage')
-                    ->label('tag'),
+                    ->label('Company Logo'),
+                TextColumn::make('company')
+                    ->label('Company Name'),
+                TextColumn::make('url'),
                 IconColumn::make('is_active')
                     ->boolean()
-                    ->label('Active'),
+                    ->label('status'),
                 TextColumn::make('updated_by')
                     ->visible(auth()->user()->hasRole('super_admin')),
             ])
@@ -95,9 +87,9 @@ class HomeSliderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHomeSliders::route('/'),
-            'create' => Pages\CreateHomeSlider::route('/create'),
-            'edit' => Pages\EditHomeSlider::route('/{record}/edit'),
+            'index' => Pages\ListCustomers::route('/'),
+            'create' => Pages\CreateCustomer::route('/create'),
+            'edit' => Pages\EditCustomer::route('/{record}/edit'),
         ];
     }
 }
