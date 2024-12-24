@@ -21,10 +21,12 @@
                     <div class="row justify-content-center">
                         <div class="tiny-four-item py-3 px-0">
                             @foreach ($customers as $customer)
-                            <div wire:key={{$customer->id}} class="tiny-slide">
-                                <a href="javascript:void(0)" class="customers logo">
+                            <div wire:key={{$customer->id}} class="tiny-slide" >
+                                <a href="{{$customer->url ? $customer->url : 'javascript:void(0)' }}"
+                                    target="{{$customer->url ? '_blank' : '_self'}}" class="customers logo"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="{{$customer->company}}">
                                     <img src="{{ asset('storage/' . $customer->image) }}" class="avatar avatar-medium"
-                                        alt="">
+                                        alt="{{$customer->company}}">
                                 </a>
                             </div>
                             @endforeach

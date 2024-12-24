@@ -42,7 +42,10 @@ class CustomerResource extends Resource
                     ->default($user ? $user->name : ''),
                 Hidden::make('updated_by')
                     ->default($user ? $user->name : ''),
-                TextInput::make('url'),
+                TextInput::make('url')
+                    // ->prefix('https://')
+                    ->url()
+                    ->suffixIcon('heroicon-m-globe-alt'),
                 Toggle::make('is_active')
                     ->inline()
                     ->default(true),
@@ -57,7 +60,8 @@ class CustomerResource extends Resource
                     ->label('Company Logo'),
                 TextColumn::make('company')
                     ->label('Company Name'),
-                TextColumn::make('url'),
+                TextColumn::make('url')
+                    ->label('Official Website'),
                 IconColumn::make('is_active')
                     ->boolean()
                     ->label('status'),
