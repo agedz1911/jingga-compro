@@ -3,10 +3,13 @@
         <div class="col-12">
             <div class="section-title mb-4 pb-2 text-center">
                 <span class="alert alert-pills bg-soft-primary">Our Projects</span>
-                <p class="text-muted mx-auto para-desc mt-3 mb-0">Our listing <span class="text-primary fw-bold">Jingga</span> projects </p>
+                <p class="text-muted mx-auto para-desc mt-3 mb-0">Our listing <span
+                        class="text-primary fw-bold">Jingga</span> projects </p>
             </div>
-        </div><!--end col-->
-    </div><!--end row-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
     <div class="container mt-5">
         <div class="row">
 
@@ -15,19 +18,48 @@
                     <div class="col-12 filters-group-wrap">
                         <div class="filters-group">
                             <ul class="container-filter list-inline mb-0 filter-options">
-                                <li class="list-inline-item categories-name border text-dark rounded active" data-group="all">All</li>
-                                <li class="list-inline-item categories-name border text-dark rounded" data-group="2019">2019</li>
-                                <li class="list-inline-item categories-name border text-dark rounded" data-group="2020">2020</li>
-                                <li class="list-inline-item categories-name border text-dark rounded" data-group="2021">2021</li>
-                                <li class="list-inline-item categories-name border text-dark rounded" data-group="2022">2022</li>
-                                <li class="list-inline-item categories-name border text-dark rounded" data-group="2023">2023</li>
+                                <li class="list-inline-item categories-name border text-dark rounded active"
+                                    data-group="all">All</li>
+                                @foreach ($projects as $item)
+                                <li class="list-inline-item categories-name border text-dark rounded" data-group="{{ $item->event_year }}">
+                                    {{$item->event_year}}</li>
+                                @endforeach
+
                             </ul>
                         </div>
-                    </div><!--end col-->
-                </div><!--end row-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
 
                 <div id="grid" class="row">
-                    <div class="col-lg-4 col-md-6 mt-4 pt-2 picture-item" data-groups='["2019"]'>
+                    @foreach($projects as $project)
+                    <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["{{ $project->event_year }}"]'>
+                        <div class="card border-0 work-container work-classic shadow overflow-hidden">
+                            <div class="card-body work-container work-modern p-0">
+                                {{-- <div class="portfolio-box-img position-relative overflow-hidden">
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="{{ $project->gallery }}" alt="{{ $project->event_title }}" />
+                                    <div class="overlay-work bg-dark"></div>
+                                    <div class="icons text-center">
+                                        <a href="{{ $project->gallery }}"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox">
+                                            <i data-feather="camera" class="fea icon-sm image-icon"></i>
+                                        </a>
+                                    </div>
+                                </div> --}}
+                                <div class="p-4">
+                                    <h6 class="text-muted tag mb-0">{{ $project->event_year }}</h6>
+                                    <h5 class="text-dark">{{ $project->event_title }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+
+                    @endforeach
+
+                    {{-- <div class="col-lg-4 col-md-6 mt-4 pt-2 picture-item" data-groups='["2019"]'>
                         <div class="section-title sticky-bar position-sticky">
                             <span class="badge rounded-pill bg-soft-primary">2019</span>
                             <h6 class="mt-3 mb-2">Official Contractor</h6>
@@ -37,10 +69,13 @@
                                     Indonesia Ke-23 (PIT IKABI-23)
                                 </li>
                                 <li>The 21st International Meeting on Respinatory Care Indonesia 2019</li>
-                                <li>The 24th ASEAN Federation Cardiology Congress (AFCC) in conjunction with 28th ASMIHA</li>
+                                <li>The 24th ASEAN Federation Cardiology Congress (AFCC) in conjunction with 28th ASMIHA
+                                </li>
                             </ul>
                             <div class="mt-4 d-none d-md-block">
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2019" class="btn btn-soft-primary">See More <i data-feather="arrow-right" class="fea icon-sm"></i></a>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2019"
+                                    class="btn btn-soft-primary">See More <i data-feather="arrow-right"
+                                        class="fea icon-sm"></i></a>
                             </div>
                         </div>
                     </div>
@@ -50,11 +85,14 @@
                             <h6 class="mt-3 mb-2">Official Contractor <br>Virtual Event</h6>
                             <ul class="text-muted mb-0">
                                 <li>Perkumpulan Dokter Intervensi Nyeri Indonesia 2020 (PERDINI)</li>
-                                <li>the 19th Annual Scientific Meeting of Indonesian Physical Medicine & Rehabilitation Association (PIT XIX PERDOSRI)</li>
+                                <li>the 19th Annual Scientific Meeting of Indonesian Physical Medicine & Rehabilitation
+                                    Association (PIT XIX PERDOSRI)</li>
                                 <li>Perhimpunan Dokter Spesialis Kedokteran Jiwa Indonesia 2020 (PDSKJI)</li>
                             </ul>
                             <div class="mt-4 d-none d-md-block">
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2020" class="btn btn-soft-primary">See More <i data-feather="arrow-right" class="fea icon-sm"></i></a>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2020"
+                                    class="btn btn-soft-primary">See More <i data-feather="arrow-right"
+                                        class="fea icon-sm"></i></a>
                             </div>
                         </div>
                     </div>
@@ -72,7 +110,9 @@
                                 <li>44th Annual Scientific Meeting of Indonesian Urological Association (ASMIUA)</li>
                             </ul>
                             <div class="mt-4 d-none d-md-block">
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2021" class="btn btn-soft-primary">See More <i data-feather="arrow-right" class="fea icon-sm"></i></a>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2021"
+                                    class="btn btn-soft-primary">See More <i data-feather="arrow-right"
+                                        class="fea icon-sm"></i></a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +130,9 @@
                                 <li>Perhimpunan Spesialis Bedah Saraf Indonesia (PERSPEBSI)</li>
                             </ul>
                             <div class="mt-4 d-none d-md-block">
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2022" class="btn btn-soft-primary">See More <i data-feather="arrow-right" class="fea icon-sm"></i></a>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2022"
+                                    class="btn btn-soft-primary">See More <i data-feather="arrow-right"
+                                        class="fea icon-sm"></i></a>
                             </div>
                         </div>
                     </div>
@@ -107,7 +149,9 @@
                                 </li>
                             </ul>
                             <div class="mt-4 d-none d-md-block">
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2023" class="btn btn-soft-primary">See More <i data-feather="arrow-right" class="fea icon-sm"></i></a>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#project2023"
+                                    class="btn btn-soft-primary">See More <i data-feather="arrow-right"
+                                        class="fea icon-sm"></i></a>
                             </div>
                         </div>
                     </div>
@@ -116,10 +160,13 @@
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2019-1.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2019-1.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2019-1.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2019-1.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -127,16 +174,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2020"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2020-1.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2020-1.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2020-1.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2020-1.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -144,16 +194,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2019"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2019-2.jpg" alt="2" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2019-2.jpg" alt="2" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2019-2.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2019-2.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -161,16 +214,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2019"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2019-3.jpg" alt="2" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2019-3.jpg" alt="2" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2019-3.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2019-3.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -178,16 +234,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2021"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2021.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2021.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2021.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2021.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -195,16 +254,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2023"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2023-1.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2023-1.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2023-1.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2023-1.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -212,16 +274,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2022"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2022-1.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2022-1.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2022-1.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2022-1.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -229,16 +294,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2023"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2023-2.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2023-2.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2023-2.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2023-2.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -246,16 +314,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2022"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2022-2.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2022-2.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2022-2.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2022-2.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -263,16 +334,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2022"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2022-3.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2022-3.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2022-3.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2022-3.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -280,16 +354,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
 
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2023"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2023-4.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2023-4.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2023-4.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2023-4.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -297,15 +374,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
+
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2023"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2023-5.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2023-5.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2023-5.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2023-5.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -313,15 +394,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>
+
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["2023"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
                                 <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto" src="images/projects/2023-6.jpg" alt="1" />
+                                    <img class="item-container img-fluid work-image mx-auto"
+                                        src="images/projects/2023-6.jpg" alt="1" />
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="images/projects/2023-6.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        <a href="images/projects/2023-6.jpg"
+                                            class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"><i
+                                                data-feather="camera" class="fea icon-sm image-icon"></i></a>
                                     </div>
                                 </div>
                                 <div class=" p-4">
@@ -329,9 +414,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end col-->
-        </div><!--end row-->
-    </div><!--end container-->
+                    </div> --}}
+                </div>
+                <!--end row-->
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
 </div>
