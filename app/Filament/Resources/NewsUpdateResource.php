@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
-use App\Models\Customer;
+use App\Filament\Resources\NewsUpdateResource\Pages;
+use App\Filament\Resources\NewsUpdateResource\RelationManagers;
+use App\Models\NewsUpdate;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -16,15 +17,17 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 
-class CustomerResource extends Resource
+class NewsUpdateResource extends Resource
 {
-    protected static ?string $model = Customer::class;
+    protected static ?string $model = NewsUpdate::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     public static function form(Form $form): Form
     {
@@ -32,20 +35,25 @@ class CustomerResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('company'),
-                FileUpload::make('image')
-                    ->directory('customer')
-                    ->image()
-                    ->helperText('image size: 245x108 pixel')
+                TextInput::make('title')
                     ->required(),
+                TextInput::make('location')
+                    ->required(),
+                MarkdownEditor::make('description'),
                 Hidden::make('created_by')
                     ->default($user ? $user->name : ''),
                 Hidden::make('updated_by')
                     ->default($user ? $user->name : ''),
-                TextInput::make('url')
-                    // ->prefix('https://')
-                    ->url()
-                    ->suffixIcon('heroicon-m-globe-alt'),
+                FileUpload::make('image')
+                    ->helperText(new HtmlString('<small style="color:red; "><sup>*</sup><i>Max 3Mb</i></small>'))
+                    ->required()
+                    ->maxSize(3072)
+                    ->downloadable()
+                    ->reorderable()
+                    ->panelLayout('grid')
+                    ->image()
+                    ->imageEditor()
+                    ->directory('news_update'),
                 Toggle::make('is_active')
                     ->inline()
                     ->default(true),
@@ -56,19 +64,20 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')
-                    ->label('Company Logo'),
-                TextColumn::make('company')
-                    ->searchable()
-                    ->label('Company Name'),
-                TextColumn::make('url')
-                    ->label('Official Website'),
+                TextColumn::make('title')
+                    ->searchable(),
+                TextColumn::make('location')
+                    ->searchable(),
+                TextColumn::make('description')
+                    ->markdown(),
+                ImageColumn::make('image'),
                 IconColumn::make('is_active')
                     ->sortable()
                     ->boolean()
-                    ->label('status'),
-                TextColumn::make('updated_by')
-                    ->visible(auth()->user()->hasRole('super_admin')),
+                    ->label('Publish'),
+                TextColumn::make('created_at')
+                    ->since()
+                    ->sortable()
             ])
             ->filters([
                 //
@@ -93,9 +102,9 @@ class CustomerResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCustomers::route('/'),
-            'create' => Pages\CreateCustomer::route('/create'),
-            'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'index' => Pages\ListNewsUpdates::route('/'),
+            'create' => Pages\CreateNewsUpdate::route('/create'),
+            'edit' => Pages\EditNewsUpdate::route('/{record}/edit'),
         ];
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Livewire\Pages\Index;
+use App\Livewire\Section\NewsUpdate;
+use App\Livewire\Section\NewsUpdateDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/contoh', function () {
-    return view('welcome');
-});
+// Route::get('/contoh', function () {
+//     return view('welcome');
+// });
 
 Route::get('/', Index::class);
+Route::get('/news-update', NewsUpdate::class)->name('news-update');
+Route::get('/news-update/{id}', NewsUpdateDetail::class)->name('news-update-detail');

@@ -20,9 +20,10 @@
                             <ul class="container-filter list-inline mb-0 filter-options">
                                 <li class="list-inline-item categories-name border text-dark rounded active"
                                     data-group="all">All</li>
-                                @foreach ($projects as $item)
-                                <li class="list-inline-item categories-name border text-dark rounded" data-group="{{ $item->event_year }}">
-                                    {{$item->event_year}}</li>
+                                @foreach ($years as $item)
+                                <li class="list-inline-item categories-name border text-dark rounded"
+                                    data-group="{{ $item }}">
+                                    {{$item}}</li>
                                 @endforeach
 
                             </ul>
@@ -37,17 +38,26 @@
                     <div class="col-lg-4 col-12 mt-4 pt-2 picture-item" data-groups='["{{ $project->event_year }}"]'>
                         <div class="card border-0 work-container work-classic shadow overflow-hidden">
                             <div class="card-body work-container work-modern p-0">
-                                {{-- <div class="portfolio-box-img position-relative overflow-hidden">
-                                    <img class="item-container img-fluid work-image mx-auto"
-                                        src="{{ $project->gallery }}" alt="{{ $project->event_title }}" />
+                                <div class="portfolio-box-img position-relative overflow-hidden">
+                                    <div id="galleryControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach ($project->gallery as $index => $image)
+                                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                                <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="...">
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                     <div class="overlay-work bg-dark"></div>
                                     <div class="icons text-center">
-                                        <a href="{{ $project->gallery }}"
+                                        @foreach ($project->gallery as $image)
+                                        <a href="storage/{{$image}}"
                                             class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox">
                                             <i data-feather="camera" class="fea icon-sm image-icon"></i>
                                         </a>
+                                        @endforeach
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="p-4">
                                     <h6 class="text-muted tag mb-0">{{ $project->event_year }}</h6>
                                     <h5 class="text-dark">{{ $project->event_title }}</h5>

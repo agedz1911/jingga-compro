@@ -13,24 +13,24 @@
     <meta name="keywords" content="exhibition, medical, expo, service, trade, show" />
     <meta name="author" content="AvPro" />
     <!-- favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico">
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- tobii css -->
-    <link href="css/tobii.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/tobii.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons -->
-    <link href="css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
     <!-- Slider -->
-    <link rel="stylesheet" href="css/tiny-slider.css" />
-    <link href="css/swiper.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/tiny-slider.css" />
+    <link href="/css/swiper.min.css" rel="stylesheet" type="text/css" />
     <!-- Main Css -->
-    <link href="css/style-dark.css" rel="stylesheet" type="text/css" id="theme-opt" />
-    <link href="css/colors/yellow.css" rel="stylesheet" id="color-opt">
+    <link href="/css/style-dark.css" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="/css/colors/yellow.css" rel="stylesheet" id="color-opt">
 </head>
 
 <body>
-    <x-menu.navigation />
+   
 
     {{ $slot }}
 
@@ -40,18 +40,18 @@
     <!-- Back to top -->
 
     <!-- javascript -->
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
     <!-- Shuffle and tobii js -->
-    <script src="js/shuffle.min.js"></script>
-    <script src="js/tobii.min.js"></script>
+    <script src="/js/shuffle.min.js"></script>
+    <script src="/js/tobii.min.js"></script>
     <!-- SLIDER -->
-    <script src="js/swiper.min.js"></script>
-    <script src="js/tiny-slider.js "></script>
+    <script src="/js/swiper.min.js"></script>
+    <script src="/js/tiny-slider.js "></script>
     <!-- Icons -->
-    <script src="js/feather.min.js"></script>
+    <script src="/js/feather.min.js"></script>
     <!-- Main Js -->
-    <script src="js/plugins.init.js"></script><!--Note: All init (custom) js like tiny slider, counter, countdown, lightbox, gallery, swiper slider etc.-->
-    <script src="js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+    <script src="/js/plugins.init.js"></script><!--Note: All init (custom) js like tiny slider, counter, countdown, lightbox, gallery, swiper slider etc.-->
+    <script src="/js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
 
 </body>
 

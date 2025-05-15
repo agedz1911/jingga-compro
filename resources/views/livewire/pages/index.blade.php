@@ -1,4 +1,6 @@
 <div>
+     <x-menu.navigation />
+
     <section class="swiper-slider-hero position-relative d-block vh-100" id="home">
         <livewire:section.slider />
     </section>
@@ -65,6 +67,60 @@
     <section class="section" id="customers">
         <livewire:section.customer />
     </section>
+
+    <section class="section bg-light" id="news">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title mb-4 pb-2 text-center">
+                        <h6 class="alert bg-soft-primary alert-pills">Jingga Updates</h6>
+                        <p class="text-muted para-desc mx-auto mb-0">The Lates News <span class="text-primary fw-bold">Jingga</span> Updates</p>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+
+            <div class="row">
+                @foreach ($newsUpdates as $news)
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="card blog rounded border-0 shadow">
+                        <div class="position-relative">
+                            <img src="{{asset('storage/' . $news->image)}}" class="card-img-top rounded-top" alt="...">
+                            <div class="overlay rounded-top bg-dark"></div>
+                        </div>
+                        <div class="card-body content">
+                            <h5><a href="javascript:void(0)" class="card-title title text-dark">{{$news->title}}</a></h5>
+                            <div class="post-meta  mt-3">
+                                <p>{!! str(str($news->description)->limit(40))->markdown()->sanitizeHtml() !!}</p>
+                                <a href="{{url('news-update', ['id' => $news->id])}}" class="text-muted readmore float-end">Read More <i class="uil uil-angle-right-b"></i></a>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <small class="text-light date"><i class="uil uil-calendar-alt"></i> {{$news->created_at->diffForHumans()}}</small>
+                            <small class="text-light user d-block"><i class="uil uil-map-marker"></i> {{$news->location}}</small>
+                        </div>
+                    </div>
+                </div><!--end col-->
+
+                @endforeach
+            </div><!--end row-->
+            <div class="row justify-content-center mt-5">
+                <div class="col-12">
+                    <div class="section-title mb-4 pb-2 text-center">
+                        <a href="{{route('news-update')}}" class="btn btn-primary">Read More Updates</a>
+                    </div>
+                </div>
+            </div>
+        </div><!--end container-->
+    </section>
+
+    <section class="section mb-5" id="testimonial">
+        <livewire:section.testimonial />
+    </section>
+
+    <footer id="contact-us">
+        <livewire:section.contact-us />
+
+    </footer>
 
 
 </div>

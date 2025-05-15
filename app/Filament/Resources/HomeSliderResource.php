@@ -61,12 +61,15 @@ class HomeSliderResource extends Resource
                     ->label('Home Slider')
                     ->square(),
                 TextColumn::make('title')
+                    ->searchable()
                     ->limit(30),
                 TextColumn::make('description')
                     ->limit(50),
                 TextColumn::make('tage')
+                    ->searchable()
                     ->label('tag'),
                 IconColumn::make('is_active')
+                    ->sortable()
                     ->boolean()
                     ->label('Active'),
                 TextColumn::make('updated_by')

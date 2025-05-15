@@ -49,8 +49,6 @@ class ProjectResource extends Resource
                         '2028' => '2028',
                         '2029' => '2029',
                         '2030' => '2030',
-                        'reviewing' => 'Reviewing',
-                        'published' => 'Published',
                     ])
                     ->native(false),
                 TextInput::make('event_title'),
@@ -87,11 +85,12 @@ class ProjectResource extends Resource
                     ->limit(3)
                     ->limitedRemainingText()
                     ->stacked(),
-                TextColumn::make('event_year'),
-                    // ->sortable(),
-                TextColumn::make('event_title'),
-                    // ->searchable(),
+                TextColumn::make('event_year')
+                    ->sortable(),
+                TextColumn::make('event_title')
+                    ->searchable(),
                 IconColumn::make('is_active')
+                ->sortable()
                     ->boolean()
                     ->label('Publish'),
                 TextColumn::make('updated_by')
