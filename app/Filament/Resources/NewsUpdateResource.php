@@ -63,12 +63,14 @@ class NewsUpdateResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->allowDuplicates()
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('location')
                     ->searchable(),
                 TextColumn::make('description')
+                    ->limit(100)
                     ->markdown(),
                 ImageColumn::make('image'),
                 IconColumn::make('is_active')

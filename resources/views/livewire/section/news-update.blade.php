@@ -26,7 +26,7 @@
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="card-body content">
-                                    <h5><a href="javascript:void(0)"
+                                    <h5><a href="{{url('news-update', ['id' => $news->id])}}"
                                             class="card-title title text-dark">{{$news->title}}</a>
                                     </h5>
                                     <div class="post-meta  mt-3">

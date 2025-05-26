@@ -4,7 +4,9 @@
         <div class="row justify-content-center mt-100 mt-60">
             <div class="col-12">
                 <div class="section-title mb-4 pb-2 text-center">
-                    <a href="/news-update"><h6 class="alert bg-soft-primary alert-pills">Jingga Updates</h6></a>
+                    <a href="/news-update">
+                        <h6 class="alert bg-soft-primary alert-pills">Jingga Updates</h6>
+                    </a>
                     <p class="text-muted para-desc mx-auto mb-0">The Latest Updates <span
                             class="text-primary fw-bold">Jingga</span> Projects</p>
                 </div>
@@ -14,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-6">
-                    <div class="card blog blog-detail border-0 shadow rounded">
+                    <div class="card blog blog-detail border-0 shadow rounded mb-5 ">
                         <img src="{{asset('storage/' . $news->image)}}" class="img-fluid rounded-top" alt="">
                         <div class="card-body content">
                             <h5 class="text-primary"><i class="mdi mdi-tag text-primary me-1"></i> {{$news->title}}</h5>
@@ -22,22 +24,32 @@
                                 {!! str($news->description)->markdown()->sanitizeHtml() !!}
                             </div>
 
-                            {{-- <div class="post-meta mt-3">
+                            <div class="post-meta mt-3">
                                 <ul class="list-unstyled mb-0">
-                                    <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)"
-                                            class="text-muted like"><i class="uil uil-heart me-1"></i>33</a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)"
-                                            class="text-muted comments"><i class="uil uil-comment me-1"></i>08</a></li>
+                                    <li class="list-inline-item me-2 mb-0">
+                                        <a href="javascript:void(0)" class="text-muted like"><i
+                                                class="uil uil-map-marker me-1"></i>
+                                                
+                                                {{$news->location}}
+                                            </a>
+                                    </li>
+                                    <li class="list-inline-item me-2 mb-0">
+                                        <a href="javascript:void(0)" class="text-muted comments"><i
+                                                class="uil uil-calendar-alt me-1"></i>
+                                                Posted:
+                                                {{$news->created_at->diffForHumans()}}
+                                            </a>
+                                    </li>
                                 </ul>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card shadow rounded border-0 mt-4">
+                    {{-- <div class="card shadow rounded border-0 mt-4">
                         <div class="card-body">
                             <h5 class="card-title mb-0">Comments :</h5>
 
-                            {{-- <ul class="media-list list-unstyled mb-0">
+                            <ul class="media-list list-unstyled mb-0">
                                 <li class="mt-4">
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex align-items-center">
@@ -60,15 +72,15 @@
                                             suffered alteration in some form, by injected humour "</p>
                                     </div>
                                 </li>
-                            </ul> --}}
+                            </ul>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="card shadow rounded border-0 mt-4 mb-5">
+                    {{-- <div class="card shadow rounded border-0 mt-4 mb-5">
                         <div class="card-body">
                             <h5 class="card-title mb-0">Leave A Comment :</h5>
 
-                            {{-- <form class="mt-3">
+                            <form class="mt-3">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="mb-3">
@@ -110,9 +122,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form> --}}
+                            </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
@@ -120,13 +132,13 @@
                         <div class="card-body">
                             <!-- SEARCH -->
                             <div class="widget">
-                                
-                                    <div class="input-group mb-3 border rounded">
-                                        <input type="text" wire:model.live.debounce.500ms='search' id="search" name="search" class="form-control text-dark border-0"
-                                            placeholder="Search Keywords...">
-                                        
-                                    </div>
-                                
+
+                                <div class="input-group mb-3 border rounded">
+                                    <input type="text" wire:model.live.debounce.500ms='search' id="search" name="search"
+                                        class="form-control text-dark border-0" placeholder="Search Keywords...">
+
+                                </div>
+
                             </div>
                             <!-- SEARCH -->
 
@@ -136,8 +148,9 @@
                                 <div class="mt-4">
                                     @foreach ($newsUpdates as $post)
                                     <div class="clearfix post-recent">
-                                        <div class="post-recent-thumb float-start"> <a href="{{url('news-update', ['id' => $post->id])}}"> <img
-                                                    alt="img" src="{{asset('storage/' . $post->image)}}"
+                                        <div class="post-recent-thumb float-start"> <a
+                                                href="{{url('news-update', ['id' => $post->id])}}"> <img alt="img"
+                                                    src="{{asset('storage/' . $post->image)}}"
                                                     class="img-fluid rounded"></a>
                                         </div>
                                         <div class="post-recent-content float-start">

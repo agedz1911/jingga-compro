@@ -88,7 +88,7 @@
                             <div class="overlay rounded-top bg-dark"></div>
                         </div>
                         <div class="card-body content">
-                            <h5><a href="javascript:void(0)" class="card-title title text-dark">{{$news->title}}</a></h5>
+                            <h5><a href="{{url('news-update', ['id' => $news->id])}}" class="card-title title text-dark">{{$news->title}}</a></h5>
                             <div class="post-meta  mt-3">
                                 <p>{!! str(str($news->description)->limit(40))->markdown()->sanitizeHtml() !!}</p>
                                 <a href="{{url('news-update', ['id' => $news->id])}}" class="text-muted readmore float-end">Read More <i class="uil uil-angle-right-b"></i></a>

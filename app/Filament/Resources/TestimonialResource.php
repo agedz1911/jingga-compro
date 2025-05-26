@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 
+
 class TestimonialResource extends Resource
 {
     protected static ?string $model = Testimonial::class;
@@ -38,6 +39,7 @@ class TestimonialResource extends Resource
                     ->label('Name / Company')
                     ->required(),
                 Textarea::make('description')
+                    ->maxLength(255)
                     ->required()
                     ->helperText(new HtmlString('<small style="color:red; "><sup>*</sup><i>Max characters: 255</i></small>')),
                 Hidden::make('created_by')
@@ -67,7 +69,7 @@ class TestimonialResource extends Resource
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('description')
-                ->limit(100),
+                    ->limit(100),
                 ImageColumn::make('logo'),
                 IconColumn::make('is_active')
                     ->sortable()
@@ -82,7 +84,8 @@ class TestimonialResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+
                 ]),
             ]);
     }
